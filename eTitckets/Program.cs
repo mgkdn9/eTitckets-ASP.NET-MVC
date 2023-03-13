@@ -1,6 +1,10 @@
+using eTitckets.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<AppDbContext>( options => options.UseSqlServer("Data Source=.;Initial Catalog=ecommerce-movie-app-db;Integrated Security=True;Pooling=False"));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
