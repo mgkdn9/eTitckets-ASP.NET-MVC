@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<AppDbContext>( options => options.UseSqlServer("Data Source=.;Initial Catalog=ecommerce-movie-app-db;Integrated Security=True;Pooling=False"));
+builder.Services.AddDbContext<AppDbContext>( options => options.UseSqlServer("Data Source=.;Initial Catalog=ecommerce-movie-app-db;Integrated Security=True;Pooling=False;Encrypt=False"));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -27,5 +27,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+//Seed database
+AppDbInitializer.Seed(app);
 
 app.Run();
